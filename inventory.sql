@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2020 at 08:44 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Waktu pembuatan: 09 Jun 2024 pada 13.59
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notes`
+-- Struktur dari tabel `notes`
 --
 
 CREATE TABLE `notes` (
@@ -36,7 +35,7 @@ CREATE TABLE `notes` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `notes`
+-- Dumping data untuk tabel `notes`
 --
 
 INSERT INTO `notes` (`id`, `contents`, `admin`, `status`) VALUES
@@ -45,7 +44,7 @@ INSERT INTO `notes` (`id`, `contents`, `admin`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sbrg_keluar`
+-- Struktur dari tabel `sbrg_keluar`
 --
 
 CREATE TABLE `sbrg_keluar` (
@@ -58,16 +57,16 @@ CREATE TABLE `sbrg_keluar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sbrg_keluar`
+-- Dumping data untuk tabel `sbrg_keluar`
 --
 
 INSERT INTO `sbrg_keluar` (`id`, `idx`, `tgl`, `jumlah`, `penerima`, `keterangan`) VALUES
-(15, 244, '2020-08-29', 1000, 'Kasmina', 'Laku');
+(16, 245, '2024-05-17', 1, 'BUDI', 'HAI');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sbrg_masuk`
+-- Struktur dari tabel `sbrg_masuk`
 --
 
 CREATE TABLE `sbrg_masuk` (
@@ -79,16 +78,16 @@ CREATE TABLE `sbrg_masuk` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sbrg_masuk`
+-- Dumping data untuk tabel `sbrg_masuk`
 --
 
 INSERT INTO `sbrg_masuk` (`id`, `idx`, `tgl`, `jumlah`, `keterangan`) VALUES
-(9, 244, '2020-08-07', 600, 'kk');
+(13, 245, '2024-05-17', 1, 'DIPINJAM');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slogin`
+-- Struktur dari tabel `slogin`
 --
 
 CREATE TABLE `slogin` (
@@ -100,7 +99,7 @@ CREATE TABLE `slogin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `slogin`
+-- Dumping data untuk tabel `slogin`
 --
 
 INSERT INTO `slogin` (`id`, `username`, `password`, `nickname`, `role`) VALUES
@@ -109,7 +108,7 @@ INSERT INTO `slogin` (`id`, `username`, `password`, `nickname`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sstock_brg`
+-- Struktur dari tabel `sstock_brg`
 --
 
 CREATE TABLE `sstock_brg` (
@@ -117,87 +116,187 @@ CREATE TABLE `sstock_brg` (
   `nama` varchar(55) NOT NULL,
   `jenis` varchar(30) NOT NULL,
   `merk` varchar(40) NOT NULL,
-  `ukuran` varchar(20) NOT NULL,
   `stock` int(12) NOT NULL,
   `satuan` varchar(10) NOT NULL,
   `lokasi` varchar(55) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sstock_brg`
+-- Dumping data untuk tabel `sstock_brg`
 --
 
-INSERT INTO `sstock_brg` (`idx`, `nama`, `jenis`, `merk`, `ukuran`, `stock`, `satuan`, `lokasi`) VALUES
-(243, 'Mata Bor', 'Flame', 'Garryson', '50', 2992, 'Buah', 'PT Willtec'),
-(244, 'Mata Bor', 'Ball Nosed Cone', 'Garryson', '17', 1000, 'Unit', 'PT Wiltec');
+INSERT INTO `sstock_brg` (`idx`, `nama`, `jenis`, `merk`, `stock`, `satuan`, `lokasi`) VALUES
+(245, 'PENA', 'ATK', 'JOYKO', 11, 'Unit', 'RAK'),
+(256, 'Stiker pengiriman', 'Perlengkapan', '-', 10, 'Buah', 'Gudang'),
+(255, 'Printer label', 'Perlengkapan', '-', 5, 'Buah', 'Gudang'),
+(254, 'Bubble Warp', 'Perlengkapan', '-', 10, 'Unit', 'Gudang'),
+(253, 'Kotak Karton', 'Perlengkapan', '-', 10, 'Buah', 'Gudang');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_kebun`
+--
+
+CREATE TABLE `tbl_kebun` (
+  `id` int(11) NOT NULL,
+  `kode_kebun` varchar(50) NOT NULL,
+  `nama_kebun` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_kebun`
+--
+
+INSERT INTO `tbl_kebun` (`id`, `kode_kebun`, `nama_kebun`) VALUES
+(1, 'ABC1', 'ABC1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_nettosawit`
+--
+
+CREATE TABLE `tbl_nettosawit` (
+  `id` int(11) NOT NULL,
+  `tgl_terima` date NOT NULL,
+  `tgl_dikirim` date NOT NULL,
+  `no_spb` varchar(50) NOT NULL,
+  `netto_kebun` int(11) NOT NULL,
+  `alb` int(11) NOT NULL,
+  `kadar_air` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_nettosawit`
+--
+
+INSERT INTO `tbl_nettosawit` (`id`, `tgl_terima`, `tgl_dikirim`, `no_spb`, `netto_kebun`, `alb`, `kadar_air`) VALUES
+(2, '2024-06-09', '2024-06-09', '1', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_timbang`
+--
+
+CREATE TABLE `tbl_timbang` (
+  `id` int(11) NOT NULL,
+  `penyusutan` int(10) NOT NULL,
+  `netto_kebun` int(10) NOT NULL,
+  `netto_ppl` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_timbang`
+--
+
+INSERT INTO `tbl_timbang` (`id`, `penyusutan`, `netto_kebun`, `netto_ppl`) VALUES
+(2, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `notes`
+-- Indeks untuk tabel `notes`
 --
 ALTER TABLE `notes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sbrg_keluar`
+-- Indeks untuk tabel `sbrg_keluar`
 --
 ALTER TABLE `sbrg_keluar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sbrg_masuk`
+-- Indeks untuk tabel `sbrg_masuk`
 --
 ALTER TABLE `sbrg_masuk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `slogin`
+-- Indeks untuk tabel `slogin`
 --
 ALTER TABLE `slogin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sstock_brg`
+-- Indeks untuk tabel `sstock_brg`
 --
 ALTER TABLE `sstock_brg`
   ADD PRIMARY KEY (`idx`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indeks untuk tabel `tbl_kebun`
+--
+ALTER TABLE `tbl_kebun`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_nettosawit`
+--
+ALTER TABLE `tbl_nettosawit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_timbang`
+--
+ALTER TABLE `tbl_timbang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `notes`
+-- AUTO_INCREMENT untuk tabel `notes`
 --
 ALTER TABLE `notes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `sbrg_keluar`
+-- AUTO_INCREMENT untuk tabel `sbrg_keluar`
 --
 ALTER TABLE `sbrg_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `sbrg_masuk`
+-- AUTO_INCREMENT untuk tabel `sbrg_masuk`
 --
 ALTER TABLE `sbrg_masuk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `slogin`
+-- AUTO_INCREMENT untuk tabel `slogin`
 --
 ALTER TABLE `slogin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `sstock_brg`
+-- AUTO_INCREMENT untuk tabel `sstock_brg`
 --
 ALTER TABLE `sstock_brg`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_kebun`
+--
+ALTER TABLE `tbl_kebun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_nettosawit`
+--
+ALTER TABLE `tbl_nettosawit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_timbang`
+--
+ALTER TABLE `tbl_timbang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
